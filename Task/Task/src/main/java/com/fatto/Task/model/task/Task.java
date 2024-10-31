@@ -1,5 +1,6 @@
 package com.fatto.Task.model.task;
 
+import com.fatto.Task.dto.task.TaskDTO;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -28,11 +29,11 @@ public class Task {
     // Constructors
     public Task() {}
 
-    public Task(String name, BigDecimal cost, LocalDate dueDate, String user) {
-        this.name = name;
-        this.cost = cost;
-        this.dueDate = dueDate;
-        this.userName = user;
+    public Task(TaskDTO taskDTO) {
+        this.name = taskDTO.name();
+        this.cost = taskDTO.cost();
+        this.dueDate = taskDTO.dueDate();
+        this.userName = taskDTO.userName();
     }
 
     // Getters and Setters
