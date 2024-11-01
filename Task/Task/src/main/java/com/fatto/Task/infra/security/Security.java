@@ -30,7 +30,7 @@ public class Security implements WebMvcConfigurer {
                 // Configure session management to be stateless
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
-                    req.requestMatchers("/auth/login", "/users", "/ws/**").permitAll();
+                    req.requestMatchers("/auth/login", "/users").permitAll();
                     // Allow access to Swagger documentation
                     req.requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "swagger-ui/**").permitAll();
                     req.anyRequest().authenticated(); // Require authentication for all other requests
