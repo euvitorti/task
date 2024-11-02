@@ -26,8 +26,9 @@ public class Security implements WebMvcConfigurer {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                .csrf(c -> c.disable()) // Disable CSRF protection for stateless APIs
+              .csrf(c -> c.disable()) // Disable CSRF protection for stateless APIs
                 // Configure session management to be stateless
+                .cors(cors -> cors.configure(httpSecurity)) // Habilita CORS no Spring Security
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
                     req.requestMatchers("/auth/login", "/users").permitAll();
