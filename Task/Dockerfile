@@ -5,8 +5,8 @@ FROM maven:3.8.6-openjdk-21 AS build
 WORKDIR /app
 
 # Copie o arquivo pom.xml e o diretório src para o container
-COPY pom.xml .
-COPY src ./src
+COPY Task/pom.xml .
+COPY src .Task/src
 
 # Execute o comando para construir o JAR
 RUN mvn clean package -DskipTests
