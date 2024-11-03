@@ -1,6 +1,7 @@
 package com.fatto.Task.controller.task;
 
 import com.fatto.Task.dto.task.TaskDTO;
+import com.fatto.Task.dto.task.UpdateTaskDTO;
 import com.fatto.Task.model.task.Task;
 import com.fatto.Task.repository.task.ITaskRepository;
 import com.fatto.Task.service.task.TaskService;
@@ -25,7 +26,7 @@ public class TaskController {
     private TaskService taskService;
 
     // Endpoint for user registration
-    @PostMapping
+    @PostMapping("/adicionar")
     @Transactional
     public ResponseEntity register(@RequestBody @Valid TaskDTO taskDTO, UriComponentsBuilder uriComponentsBuilder){
 
@@ -38,10 +39,10 @@ public class TaskController {
         var uri = uriComponentsBuilder.path("/task/{id}").buildAndExpand(task.getId()).toUri();
 
         // Return a response indicating that the user has been created, along with the user details
-        return ResponseEntity.created(uri).body("OK");
+        return ResponseEntity.created(uri).body(taskDTO);
     }
 
-    @GetMapping("/user/{userName}")
+    @GetMapping("/tarefas/{userName}")
     public ResponseEntity<List<Task>> getTasksByUser(@PathVariable String userName) {
         List<Task> tasks = taskService.getTasksByUser(userName);
 
@@ -52,7 +53,20 @@ public class TaskController {
         return new ResponseEntity<>(tasks, HttpStatus.OK); // 200 OK // Retorna apenas o conteúdo da página
     }
 
-    @DeleteMapping("/{id}")
+
+    @PutMapping("/editar/{id}")
+    @Transactional
+    public ResponseEntity updateTask(@RequestBody @Valid UpdateTaskDTO updateTaskDTO, @PathVariable Long id) {
+
+        var task = iTaskRepository.getReferenceById(id);
+
+        // ATUALIZA OS DADOS
+        task.updateTask(updateTaskDTO);
+
+        return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+    @DeleteMapping("/deletar/{id}")
     @Transactional
     public ResponseEntity<Void> delete(@PathVariable Long id){
         taskService.deleteTask(id);

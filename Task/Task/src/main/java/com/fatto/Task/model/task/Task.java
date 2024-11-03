@@ -1,6 +1,7 @@
 package com.fatto.Task.model.task;
 
 import com.fatto.Task.dto.task.TaskDTO;
+import com.fatto.Task.dto.task.UpdateTaskDTO;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -75,5 +76,11 @@ public class Task {
 
     public void setUser(String user) {
         this.userName = user;
+    }
+
+    public void updateTask(UpdateTaskDTO updateTaskDTO) {
+        this.name = updateTaskDTO.name();
+        this.cost = updateTaskDTO.cost();
+        this.dueDate = updateTaskDTO.dueDate();
     }
 }
