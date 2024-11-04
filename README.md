@@ -4,6 +4,9 @@
 
 Este é um sistema web desenvolvido para gerenciar tarefas, permitindo o cadastro, edição, exclusão e reordenação de tarefas em um banco de dados PostgreSQL. A aplicação segue o padrão MVC e foi implementada usando Java 21 e Spring Boot.
 
+## Testar a Aplicação 🌐
+Se preferir, você pode testar a aplicação diretamente através do seguinte link: [Site](https://fatto-front-deploy.vercel.app/).
+
 ## Tecnologias Utilizadas
 
 - **Java**: 21
@@ -47,6 +50,7 @@ Produção: A URL do seu servidor de produção.
 
 Isso vai garantir que o front-end consiga acessar a API corretamente!
 
+**Frontend**: O frontend da aplicação deve estar em execução. Você pode encontrar o repositório do frontend em [link do repositório do frontend](https://github.com/euvitorti/task-front).
 Execute o back e acesse a aplicação com o front, na página signin.html.
 
 Exemplo de configuração de CORS em uma classe de configuração Java:
