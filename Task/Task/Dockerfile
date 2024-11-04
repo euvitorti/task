@@ -1,9 +1,6 @@
 FROM openjdk:21-jdk
-
 WORKDIR /app
-
-COPY target/Task-0.0.1-SNAPSHOT.jar app.jar
-
+COPY . .
+RUN ./mvnw package -DskipTests
 EXPOSE 8080
-
-ENTRYPOINT ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "target/Task-0.0.1-SNAPSHOT.jar"]
